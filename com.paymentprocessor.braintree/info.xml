@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<extension key="com.paymentprocessor.braintree" type="module">
+  <file>braintree</file>
+  <name>Braintree</name>
+  <description>Braintree Payment Processor</description>
+  <license>AGPL</license>
+  <maintainer>
+    <author>Vivek Arora</author>
+    <email>vivek.arora@thetigroup.com</email>
+  </maintainer>
+  <releaseDate>2013-08-01</releaseDate>
+  <version>1.0</version>
+  <develStage>Devlopment</develStage>
+  <compatibility>
+    <ver>4.2</ver>
+    <ver>4.3</ver>
+  </compatibility>
+</extension>
