@@ -1,6 +1,6 @@
 <?php
 /*
-     Online contribution test for Braintree Payment Processor
+  Online contribution test for Braintree Payment Processor
 */
 
 require_once 'CiviTest/CiviSeleniumTestCase.php';
@@ -17,13 +17,13 @@ class WebTest_Contribute_OnlineContributionBraintreeTest extends CiviSeleniumTes
     $processorName = "Webtest Braintree" . substr(sha1(rand()), 0, 7);
     $processorType = 'Braintree';
     $processorSettings = array(
-        'test_user_name' => 'qvtn6yk594nbxsyw',
-        'test_password' => 'g55wdxm36pb8yy5m',
-        'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
-        'user_name' => 'qvtn6yk594nbxsyw',
-        'password' => 'g55wdxm36pb8yy5m',
-        'signature' => 'b92f264fd7b17d0f01893ff52777135c',
-    );
+                               'test_user_name' => 'qvtn6yk594nbxsyw',
+                               'test_password' => 'g55wdxm36pb8yy5m',
+                               'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               'user_name' => 'qvtn6yk594nbxsyw',
+                               'password' => 'g55wdxm36pb8yy5m',
+                               'signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               );
     $this->webtestAddPaymentProcessor($processorName,$processorType,$processorSettings);
     $pageTitle = substr(sha1(rand()), 0, 7);
     $rand = 2 * rand(10, 50);
@@ -45,24 +45,24 @@ class WebTest_Contribute_OnlineContributionBraintreeTest extends CiviSeleniumTes
     // create a new online contribution page
     // create contribution page with randomized title and default params
     $pageId = $this->webtestAddContributionPage($hash,
-      $rand,
-      $pageTitle,
-      array($processorName => $processorType),
-      $amountSection,
-      $payLater,
-      $onBehalf,
-      $pledges,
-      $recurring,
-      $memberships,
-      $memPriceSetId,
-      $friend,
-      $profilePreId,
-      $profilePostId,
-      $premiums,
-      $widget,
-      $pcp,
-      $isAddPaymentProcessor
-    );
+                                                $rand,
+                                                $pageTitle,
+                                                array($processorName => $processorType),
+                                                $amountSection,
+                                                $payLater,
+                                                $onBehalf,
+                                                $pledges,
+                                                $recurring,
+                                                $memberships,
+                                                $memPriceSetId,
+                                                $friend,
+                                                $profilePreId,
+                                                $profilePostId,
+                                                $premiums,
+                                                $widget,
+                                                $pcp,
+                                                $isAddPaymentProcessor
+                                                );
 
     //logout
     $this->webtestLogout();
@@ -136,12 +136,12 @@ class WebTest_Contribute_OnlineContributionBraintreeTest extends CiviSeleniumTes
 
     //View Contribution Record and verify data
     $expected = array(
-      'From' => "{$firstName} {$lastName}",
-      'Financial Type' => 'Donation',
-      'Total Amount' => '100.00',
-      'Contribution Status' => 'Completed',
-      'In Honor of' => $honorDisplayName
-    );
+                      'From' => "{$firstName} {$lastName}",
+                      'Financial Type' => 'Donation',
+                      'Total Amount' => '100.00',
+                      'Contribution Status' => 'Completed',
+                      'In Honor of' => $honorDisplayName
+                      );
     $this->webtestVerifyTabularData($expected);
 
     // Check for Honoree contact created
@@ -159,6 +159,6 @@ class WebTest_Contribute_OnlineContributionBraintreeTest extends CiviSeleniumTes
     // Is contact present?
     $this->assertTrue($this->isTextPresent("$honorDisplayName"), "Honoree contact not found.");
 
-    }
   }
+}
 

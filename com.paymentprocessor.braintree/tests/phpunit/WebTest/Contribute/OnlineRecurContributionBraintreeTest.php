@@ -1,27 +1,27 @@
 <?php
 /*
- +--------------------------------------------------------------------+
- | CiviCRM version 4.3                                                |
- +--------------------------------------------------------------------+
- | Copyright CiviCRM LLC (c) 2004-2013                                |
- +--------------------------------------------------------------------+
- | This file is a part of CiviCRM.                                    |
- |                                                                    |
- | CiviCRM is free software; you can copy, modify, and distribute it  |
- | under the terms of the GNU Affero General Public License           |
- | Version 3, 19 November 2007 and the CiviCRM Licensing Exception.   |
- |                                                                    |
- | CiviCRM is distributed in the hope that it will be useful, but     |
- | WITHOUT ANY WARRANTY; without even the implied warranty of         |
- | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.               |
- | See the GNU Affero General Public License for more details.        |
- |                                                                    |
- | You should have received a copy of the GNU Affero General Public   |
- | License along with this program; if not, contact CiviCRM LLC       |
- | at info[AT]civicrm[DOT]org. If you have questions about the        |
- | GNU Affero General Public License or the licensing of CiviCRM,     |
- | see the CiviCRM license FAQ at http://civicrm.org/licensing        |
- +--------------------------------------------------------------------+
+  +--------------------------------------------------------------------+
+  | CiviCRM version 4.3                                                |
+  +--------------------------------------------------------------------+
+  | Copyright CiviCRM LLC (c) 2004-2013                                |
+  +--------------------------------------------------------------------+
+  | This file is a part of CiviCRM.                                    |
+  |                                                                    |
+  | CiviCRM is free software; you can copy, modify, and distribute it  |
+  | under the terms of the GNU Affero General Public License           |
+  | Version 3, 19 November 2007 and the CiviCRM Licensing Exception.   |
+  |                                                                    |
+  | CiviCRM is distributed in the hope that it will be useful, but     |
+  | WITHOUT ANY WARRANTY; without even the implied warranty of         |
+  | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.               |
+  | See the GNU Affero General Public License for more details.        |
+  |                                                                    |
+  | You should have received a copy of the GNU Affero General Public   |
+  | License along with this program; if not, contact CiviCRM LLC       |
+  | at info[AT]civicrm[DOT]org. If you have questions about the        |
+  | GNU Affero General Public License or the licensing of CiviCRM,     |
+  | see the CiviCRM license FAQ at http://civicrm.org/licensing        |
+  +--------------------------------------------------------------------+
 */
 
 require_once 'CiviTest/CiviSeleniumTestCase.php';
@@ -38,13 +38,13 @@ class WebTest_Contribute_OnlineRecurContributionBraintreeTest extends CiviSeleni
     $processorName = "Webtest Braintree" . substr(sha1(rand()), 0, 7);
     $processorType = 'Braintree';
     $processorSettings = array(
-        'test_user_name' => 'qvtn6yk594nbxsyw',
-        'test_password' => 'g55wdxm36pb8yy5m',
-        'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
-        'user_name' => 'qvtn6yk594nbxsyw',
-        'password' => 'g55wdxm36pb8yy5m',
-        'signature' => 'b92f264fd7b17d0f01893ff52777135c',
-    );
+                               'test_user_name' => 'qvtn6yk594nbxsyw',
+                               'test_password' => 'g55wdxm36pb8yy5m',
+                               'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               'user_name' => 'qvtn6yk594nbxsyw',
+                               'password' => 'g55wdxm36pb8yy5m',
+                               'signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               );
     $this->webtestAddPaymentProcessor($processorName,$processorType,$processorSettings);
     // a random 7-char string and an even number to make this pass unique
     $hash = substr(sha1(rand()), 0, 7);
@@ -70,23 +70,23 @@ class WebTest_Contribute_OnlineRecurContributionBraintreeTest extends CiviSeleni
     // create a new online contribution page with recurring enabled (using a newly created AuthNet processor)
     // create contribution page with randomized title and default params
     $pageId = $this->webtestAddContributionPage($hash,
-      $rand,
-      $pageTitle,
-      array($processorName => $processorType),
-      $amountSection,
-      $payLater,
-      $onBehalf,
-      $pledges,
-      $recurring,
-      $memberships,
-      $memPriceSetId,
-      $friend,
-      $profilePreId,
-      $profilePostId,
-      $premiums,
-      $widget,
-      $pcp
-    );
+                                                $rand,
+                                                $pageTitle,
+                                                array($processorName => $processorType),
+                                                $amountSection,
+                                                $payLater,
+                                                $onBehalf,
+                                                $pledges,
+                                                $recurring,
+                                                $memberships,
+                                                $memPriceSetId,
+                                                $friend,
+                                                $profilePreId,
+                                                $profilePostId,
+                                                $premiums,
+                                                $widget,
+                                                $pcp
+                                                );
 
     //now do the test online recurring contribution as an anonymous user.
     $anonymous = TRUE;
@@ -145,17 +145,17 @@ class WebTest_Contribute_OnlineRecurContributionBraintreeTest extends CiviSeleni
 
     // View Recurring Contribution Record
     $verifyData = array(
-      'From' => "$contactName",
-                          'Financial Type' => 'Donation (test)',
-      'Total Amount' => 'Installments: 12, Interval: 1 month(s)',
-      'Contribution Status' => 'Pending : Incomplete Transaction',
-      'Paid By' => 'Credit Card',
-      'Online Contribution Page' => $pageTitle,
-    );
+                        'From' => "$contactName",
+                        'Financial Type' => 'Donation (test)',
+                        'Total Amount' => 'Installments: 12, Interval: 1 month(s)',
+                        'Contribution Status' => 'Pending : Incomplete Transaction',
+                        'Paid By' => 'Credit Card',
+                        'Online Contribution Page' => $pageTitle,
+                        );
     foreach ($verifyData as $label => $value) {
       $this->verifyText("xpath=//form[@id='ContributionView']//table/tbody/tr/td[text()='{$label}']/following-sibling::td",
-        preg_quote($value)
-      );
+                        preg_quote($value)
+                        );
     }
   }
 }

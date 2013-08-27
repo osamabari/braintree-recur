@@ -1,6 +1,6 @@
 <?php
 /*
-    Event Test with Braintree Payment Processor
+  Event Test with Braintree Payment Processor
 */
 
 require_once 'CiviTest/CiviSeleniumTestCase.php';
@@ -17,13 +17,13 @@ class WebTest_Event_AddEventBraintreeTest extends CiviSeleniumTestCase {
     $processorName = "Webtest Braintree" . substr(sha1(rand()), 0, 7);
     $processorType = 'Braintree';
     $processorSettings = array(
-        'test_user_name' => 'qvtn6yk594nbxsyw',
-        'test_password' => 'g55wdxm36pb8yy5m',
-        'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
-        'user_name' => 'qvtn6yk594nbxsyw',
-        'password' => 'g55wdxm36pb8yy5m',
-        'signature' => 'b92f264fd7b17d0f01893ff52777135c',
-    );
+                               'test_user_name' => 'qvtn6yk594nbxsyw',
+                               'test_password' => 'g55wdxm36pb8yy5m',
+                               'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               'user_name' => 'qvtn6yk594nbxsyw',
+                               'password' => 'g55wdxm36pb8yy5m',
+                               'signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               );
 
     $this->webtestAddPaymentProcessor($processorName,$processorType,$processorSettings);
    
@@ -71,13 +71,13 @@ class WebTest_Event_AddEventBraintreeTest extends CiviSeleniumTestCase {
     $processorName = "Webtest Braintree" . substr(sha1(rand()), 0, 7);
     $processorType = 'Braintree';
     $processorSettings = array(
-        'test_user_name' => 'qvtn6yk594nbxsyw',
-        'test_password' => 'g55wdxm36pb8yy5m',
-        'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
-        'user_name' => 'qvtn6yk594nbxsyw',
-        'password' => 'g55wdxm36pb8yy5m',
-        'signature' => 'b92f264fd7b17d0f01893ff52777135c',
-    );
+                               'test_user_name' => 'qvtn6yk594nbxsyw',
+                               'test_password' => 'g55wdxm36pb8yy5m',
+                               'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               'user_name' => 'qvtn6yk594nbxsyw',
+                               'password' => 'g55wdxm36pb8yy5m',
+                               'signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               );
 
     $this->webtestAddPaymentProcessor($processorName,$processorType,$processorSettings);
 
@@ -121,13 +121,13 @@ class WebTest_Event_AddEventBraintreeTest extends CiviSeleniumTestCase {
     $processorName = "Webtest Braintree" . substr(sha1(rand()), 0, 7);
     $processorType = 'Braintree';
     $processorSettings = array(
-        'test_user_name' => 'qvtn6yk594nbxsyw',
-        'test_password' => 'g55wdxm36pb8yy5m',
-        'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
-        'user_name' => 'qvtn6yk594nbxsyw',
-        'password' => 'g55wdxm36pb8yy5m',
-        'signature' => 'b92f264fd7b17d0f01893ff52777135c',
-    );
+                               'test_user_name' => 'qvtn6yk594nbxsyw',
+                               'test_password' => 'g55wdxm36pb8yy5m',
+                               'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               'user_name' => 'qvtn6yk594nbxsyw',
+                               'password' => 'g55wdxm36pb8yy5m',
+                               'signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               );
 
     $this->webtestAddPaymentProcessor($processorName,$processorType,$processorSettings);
 
@@ -184,13 +184,13 @@ class WebTest_Event_AddEventBraintreeTest extends CiviSeleniumTestCase {
     $processorName = "Webtest Braintree" . substr(sha1(rand()), 0, 7);
     $processorType = 'Braintree';
     $processorSettings = array(
-        'test_user_name' => 'qvtn6yk594nbxsyw',
-        'test_password' => 'g55wdxm36pb8yy5m',
-        'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
-        'user_name' => 'qvtn6yk594nbxsyw',
-        'password' => 'g55wdxm36pb8yy5m',
-        'signature' => 'b92f264fd7b17d0f01893ff52777135c',
-    );
+                               'test_user_name' => 'qvtn6yk594nbxsyw',
+                               'test_password' => 'g55wdxm36pb8yy5m',
+                               'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               'user_name' => 'qvtn6yk594nbxsyw',
+                               'password' => 'g55wdxm36pb8yy5m',
+                               'signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               );
 
     $this->webtestAddPaymentProcessor($processorName,$processorType,$processorSettings);
 
@@ -244,13 +244,13 @@ class WebTest_Event_AddEventBraintreeTest extends CiviSeleniumTestCase {
     $processorName = "Webtest Braintree" . substr(sha1(rand()), 0, 7);
     $processorType = 'Braintree';
     $processorSettings = array(
-        'test_user_name' => 'qvtn6yk594nbxsyw',
-        'test_password' => 'g55wdxm36pb8yy5m',
-        'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
-        'user_name' => 'qvtn6yk594nbxsyw',
-        'password' => 'g55wdxm36pb8yy5m',
-        'signature' => 'b92f264fd7b17d0f01893ff52777135c',
-    );
+                               'test_user_name' => 'qvtn6yk594nbxsyw',
+                               'test_password' => 'g55wdxm36pb8yy5m',
+                               'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               'user_name' => 'qvtn6yk594nbxsyw',
+                               'password' => 'g55wdxm36pb8yy5m',
+                               'signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               );
 
     $this->webtestAddPaymentProcessor($processorName,$processorType,$processorSettings);
 
@@ -348,8 +348,8 @@ class WebTest_Event_AddEventBraintreeTest extends CiviSeleniumTestCase {
 
     $triggerElement = array('name' => 'event_type_id', 'type' => 'select');
     $customSets = array(
-      array('entity' => 'Event', 'subEntity' => 'Conference', 'triggerElement' => $triggerElement),
-    );
+                        array('entity' => 'Event', 'subEntity' => 'Conference', 'triggerElement' => $triggerElement),
+                        );
 
     $pageUrl = array('url' => 'event/add', 'args' => "reset=1&action=add");
     $this->customFieldSetLoadOnTheFlyCheck($customSets, $pageUrl);
@@ -488,7 +488,7 @@ class WebTest_Event_AddEventBraintreeTest extends CiviSeleniumTestCase {
         $this->clickLink("_qf_Fee_submit", "discounted_value_2_1");
         $this->type("discounted_value_1_2","225.00");
         $this->type("discounted_value_2_2","300.00");
-    }
+      }
       $this->click("xpath=//fieldset[@id='discount']/fieldset/table/tbody/tr[2]/td[3]/input");
     }
     $this->click("_qf_Fee_upload-bottom");
@@ -571,8 +571,8 @@ class WebTest_Event_AddEventBraintreeTest extends CiviSeleniumTestCase {
     $this->type("email-Primary", $email);
     if (!$isPayLater) {
       if ($paymentProcessor) {
-       $paymentProcessorEle = $this->getAttribute("xpath=//form[@id='Register']//label[contains(text(), '{$paymentProcessor}')]/@for");
-       $this->check($paymentProcessorEle);
+        $paymentProcessorEle = $this->getAttribute("xpath=//form[@id='Register']//label[contains(text(), '{$paymentProcessor}')]/@for");
+        $this->check($paymentProcessorEle);
       }
       $this->select("credit_card_type", "value=Visa");
       $this->type("credit_card_number", "4111111111111111");
@@ -660,12 +660,12 @@ class WebTest_Event_AddEventBraintreeTest extends CiviSeleniumTestCase {
     $this->waitForElementPresent("link=Edit");
 
     $verifyText = array(
-      1 => 'Event Reminder for ' . $eventTitle,
-      3 => '1 hour after Event Start Date',
-      4 => 'Registered',
-      5 => 'Yes',
-      6 => 'Yes',
-    );
+                        1 => 'Event Reminder for ' . $eventTitle,
+                        3 => '1 hour after Event Start Date',
+                        4 => 'Registered',
+                        5 => 'Yes',
+                        6 => 'Yes',
+                        );
 
     //verify the fields for Event Reminder selector
     foreach ($verifyText as $key => $value) {
@@ -720,8 +720,8 @@ class WebTest_Event_AddEventBraintreeTest extends CiviSeleniumTestCase {
       $this->assertTrue($this->isElementPresent("xpath=//tr[@class='crm-participant-form-block-registered-by']/td[2]/a[contains(text(), '$primaryDisplayName')]"), 'Registered By info is wrong on additional participant edit form');
       $this->assertElementContainsText("xpath=//form[@id='Participant']/h3", 'Edit Event Registration');
       $this->assertTrue($this->isElementPresent("xpath=//table/tbody/tr[@class='crm-participant-form-block-displayName']/td[2][contains(text(), '{$value}')]"),
-        'Wrong Participant edit form'
-      );
+                        'Wrong Participant edit form'
+                        );
       $this->assertFalse($this->isElementPresent('record_contribution'), 'Record Payment checkbox showed up wrongly for additional participant edit screen');
       $this->clickLink("_qf_Participant_cancel-top");
     }

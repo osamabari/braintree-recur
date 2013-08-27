@@ -1,6 +1,6 @@
 <?php
 /*
-    Online Membership create and signup test for Braintree Payment Processor
+  Online Membership create and signup test for Braintree Payment Processor
 */
 
 require_once 'CiviTest/CiviSeleniumTestCase.php';
@@ -16,7 +16,7 @@ class WebTest_Member_OnlineMembershipBraintreeCreateTest extends CiviSeleniumTes
     // Select membership type 1
     $this->waitForElementPresent("xpath=//div[@class='crm-section membership_amount-section']/div[2]//span/label");
     if ($memTypeId != 'No thank you') {
-    $this->click("xpath=//div[@class='crm-section membership_amount-section']/div[2]//span/label/span[2][contains(text(),'$memTypeId')]");
+      $this->click("xpath=//div[@class='crm-section membership_amount-section']/div[2]//span/label/span[2][contains(text(),'$memTypeId')]");
     }
 
     else {
@@ -77,13 +77,13 @@ class WebTest_Member_OnlineMembershipBraintreeCreateTest extends CiviSeleniumTes
     $processorName = "Webtest Braintree" . substr(sha1(rand()), 0, 7);
     $processorType = 'Braintree';
     $processorSettings = array(
-        'test_user_name' => 'qvtn6yk594nbxsyw',
-        'test_password' => 'g55wdxm36pb8yy5m',
-        'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
-        'user_name' => 'qvtn6yk594nbxsyw',
-        'password' => 'g55wdxm36pb8yy5m',
-        'signature' => 'b92f264fd7b17d0f01893ff52777135c',
-    );
+                               'test_user_name' => 'qvtn6yk594nbxsyw',
+                               'test_password' => 'g55wdxm36pb8yy5m',
+                               'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               'user_name' => 'qvtn6yk594nbxsyw',
+                               'password' => 'g55wdxm36pb8yy5m',
+                               'signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               );
 
     $this->webtestAddPaymentProcessor($processorName,$processorType,$processorSettings);
 
@@ -106,32 +106,32 @@ class WebTest_Member_OnlineMembershipBraintreeCreateTest extends CiviSeleniumTes
     $fixedAmount = FALSE;
     $contributionTitle = "Title $hash";
     $pageId = $this->webtestAddContributionPage($hash,
-      $rand,
-      $contributionTitle,
-      array($processorName => $processorType),
-      $amountSection,
-      $payLater,
-      $onBehalf,
-      $pledges,
-      $recurring,
-      $memberships,
-      $memPriceSetId,
-      $friend,
-      $profilePreId,
-      $profilePostId,
-      $premiums,
-      $widget,
-      $pcp,
-      FALSE,
-      FALSE,
-      $isSeparatePayment,
-      TRUE,
-      $allowOtherAmmount,
-      TRUE,
-      'Donation',
-      $fixedAmount,
-      $membershipsRequired
-    );
+                                                $rand,
+                                                $contributionTitle,
+                                                array($processorName => $processorType),
+                                                $amountSection,
+                                                $payLater,
+                                                $onBehalf,
+                                                $pledges,
+                                                $recurring,
+                                                $memberships,
+                                                $memPriceSetId,
+                                                $friend,
+                                                $profilePreId,
+                                                $profilePostId,
+                                                $premiums,
+                                                $widget,
+                                                $pcp,
+                                                FALSE,
+                                                FALSE,
+                                                $isSeparatePayment,
+                                                TRUE,
+                                                $allowOtherAmmount,
+                                                TRUE,
+                                                'Donation',
+                                                $fixedAmount,
+                                                $membershipsRequired
+                                                );
     $firstName = 'Ma' . substr(sha1(rand()), 0, 4);
     $lastName = 'An' . substr(sha1(rand()), 0, 7);
 
@@ -152,14 +152,14 @@ class WebTest_Member_OnlineMembershipBraintreeCreateTest extends CiviSeleniumTes
 
     //View Contribution Record and verify data
     $expected = array(
-      'From' => "{$firstName} {$lastName}",
-      'Financial Type' => 'Donation',
-      'Total Amount' => '50.00',
-      'Contribution Status' => 'Completed',
-      'Received Into' => 'Deposit Bank Account',
-      'Source' => "Online Contribution: $contributionTitle",
-      'Online Contribution Page' => $contributionTitle,
-    );
+                      'From' => "{$firstName} {$lastName}",
+                      'Financial Type' => 'Donation',
+                      'Total Amount' => '50.00',
+                      'Contribution Status' => 'Completed',
+                      'Received Into' => 'Deposit Bank Account',
+                      'Source' => "Online Contribution: $contributionTitle",
+                      'Online Contribution Page' => $contributionTitle,
+                      );
     $this->webtestVerifyTabularData($expected);
   }
 }

@@ -22,6 +22,7 @@ Tasks needs to be done for setting up recurring payments
              CRM_Core_Payment_BraintreeIPN::destinationVerfication();
              die;
 5. Comment line 16 and 17 again after successfull destination verification. 
+6. Go to plans and create new plan with civi_plan, don't worry about the plan details it be overwritten by ours.
 
 Tasks needs to be done to run the test cases.
 

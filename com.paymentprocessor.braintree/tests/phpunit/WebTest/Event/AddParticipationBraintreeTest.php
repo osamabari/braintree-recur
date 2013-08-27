@@ -1,6 +1,6 @@
 <?php
 /*
-   Offline add participation for Braintree Payment Processor
+  Offline add participation for Braintree Payment Processor
 */
 
 require_once 'CiviTest/CiviSeleniumTestCase.php';
@@ -76,29 +76,29 @@ class WebTest_Event_AddParticipationBraintreeTest extends CiviSeleniumTestCase {
     $this->waitForElementPresent('_qf_ParticipantView_cancel-bottom');
 
     $this->webtestVerifyTabularData(
-      array(
-        'Event' => 'Rain-forest Cup Youth Soccer Tournament',
-        'Participant Role' => 'Attendee',
-        'Status' => 'Registered',
-        'Event Source' => 'Event StandaloneAddTest Webtest',
-        'Event Fees' => '$ 800.00',
-      )
-    );
+                                    array(
+                                          'Event' => 'Rain-forest Cup Youth Soccer Tournament',
+                                          'Participant Role' => 'Attendee',
+                                          'Status' => 'Registered',
+                                          'Event Source' => 'Event StandaloneAddTest Webtest',
+                                          'Event Fees' => '$ 800.00',
+                                          )
+                                    );
     // check contribution record as well
     //click through to the contribution view screen
     $this->click("xpath=id('ParticipantView')/div[2]/table[@class='selector']/tbody/tr[1]/td[8]/span/a[text()='View']");
     $this->waitForElementPresent('_qf_ContributionView_cancel-bottom');
 
     $this->webtestVerifyTabularData(
-      array(
-        'From' => $displayName,
-        'Financial Type' => 'Event Fee',
-        'Total Amount' => '$ 800.00',
-        'Contribution Status' => 'Completed',
-        'Paid By' => 'Check',
-        'Check Number' => '1044',
-      )
-    );
+                                    array(
+                                          'From' => $displayName,
+                                          'Financial Type' => 'Event Fee',
+                                          'Total Amount' => '$ 800.00',
+                                          'Contribution Status' => 'Completed',
+                                          'Paid By' => 'Check',
+                                          'Check Number' => '1044',
+                                          )
+                                    );
   }
 
   function testEventParticipationAddWithMultipleRoles() {
@@ -273,14 +273,14 @@ class WebTest_Event_AddParticipationBraintreeTest extends CiviSeleniumTestCase {
     $this->waitForElementPresent('_qf_ParticipantView_cancel-bottom');
 
     $this->webtestVerifyTabularData(
-      array(
-        'Event' => 'Rain-forest Cup Youth Soccer Tournament',
-        'Participant Role' => 'Attendee, Volunteer, Host',
-        'Status' => 'Registered',
-        'Event Source' => 'Event StandaloneAddTest Webtest',
-        'Event Fees' => '$ 800.00',
-      )
-    );
+                                    array(
+                                          'Event' => 'Rain-forest Cup Youth Soccer Tournament',
+                                          'Participant Role' => 'Attendee, Volunteer, Host',
+                                          'Status' => 'Registered',
+                                          'Event Source' => 'Event StandaloneAddTest Webtest',
+                                          'Event Fees' => '$ 800.00',
+                                          )
+                                    );
 
     $this->assertTrue($this->isTextPresent("$customGroupTitle"));
     $this->assertTrue($this->isTextPresent("$checkboxOptionLabel1"));
@@ -292,15 +292,15 @@ class WebTest_Event_AddParticipationBraintreeTest extends CiviSeleniumTestCase {
     $this->waitForElementPresent('_qf_ContributionView_cancel-bottom');
 
     $this->webtestVerifyTabularData(
-      array(
-        'From' => $displayName,
-        'Financial Type' => 'Event Fee',
-        'Total Amount' => '$ 800.00',
-        'Contribution Status' => 'Completed',
-        'Paid By' => 'Check',
-        'Check Number' => '1044',
-      )
-    );
+                                    array(
+                                          'From' => $displayName,
+                                          'Financial Type' => 'Event Fee',
+                                          'Total Amount' => '$ 800.00',
+                                          'Contribution Status' => 'Completed',
+                                          'Paid By' => 'Check',
+                                          'Check Number' => '1044',
+                                          )
+                                    );
   }
 
   function testEventAddMultipleParticipants() {
@@ -311,13 +311,13 @@ class WebTest_Event_AddParticipationBraintreeTest extends CiviSeleniumTestCase {
     $processorName = "Webtest Braintree" . substr(sha1(rand()), 0, 7);
     $processorType = 'Braintree';
     $processorSettings = array(
-        'test_user_name' => 'qvtn6yk594nbxsyw',
-        'test_password' => 'g55wdxm36pb8yy5m',
-        'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
-        'user_name' => 'qvtn6yk594nbxsyw',
-        'password' => 'g55wdxm36pb8yy5m',
-        'signature' => 'b92f264fd7b17d0f01893ff52777135c',
-    );
+                               'test_user_name' => 'qvtn6yk594nbxsyw',
+                               'test_password' => 'g55wdxm36pb8yy5m',
+                               'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               'user_name' => 'qvtn6yk594nbxsyw',
+                               'password' => 'g55wdxm36pb8yy5m',
+                               'signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               );
 
     $processorId = $this->webtestAddPaymentProcessor($processorName,$processorType,$processorSettings);
     $rand = substr(sha1(rand()), 0, 7);
@@ -359,17 +359,17 @@ class WebTest_Event_AddParticipationBraintreeTest extends CiviSeleniumTestCase {
     foreach($names as $name) {
       $this->verifyText("xpath=//div[@id='participantSearch']//table//tbody//tr/td[@class='crm-participant-sort_name']/a[text()='{$name}']/../../td[9]", preg_quote($status));
       $this->verifyText("xpath=//div[@id='participantSearch']//table//tbody//tr/td[@class='crm-participant-sort_name']/a[text()='{$name}']/../../td[4]/a", preg_quote($eventName));
-}
+    }
   }
 
   function testAjaxCustomGroupLoad() {
     $this->webtestLogin();
 
     $customSets = array(
-      array('entity' => 'ParticipantEventName', 'subEntity' => 'Fall Fundraiser Dinner',
-        'triggerElement' => array('name' => "event_id", 'type' => "select")),
-      array('entity' => 'ParticipantRole', 'subEntity' => 'Attendee','triggerElement' => array('type' => "checkbox"))
-    );
+                        array('entity' => 'ParticipantEventName', 'subEntity' => 'Fall Fundraiser Dinner',
+                              'triggerElement' => array('name' => "event_id", 'type' => "select")),
+                        array('entity' => 'ParticipantRole', 'subEntity' => 'Attendee','triggerElement' => array('type' => "checkbox"))
+                        );
     $pageUrl = array('url' => "participant/add", 'args' => "reset=1&action=add&context=standalone");
     $this->customFieldSetLoadOnTheFlyCheck($customSets, $pageUrl);
   }
@@ -382,15 +382,15 @@ class WebTest_Event_AddParticipationBraintreeTest extends CiviSeleniumTestCase {
     $this->webtestLogin();
 
     $customSets = array(
-      array('entity' => 'ParticipantEventType', 'subEntity' => '- Any -',
-        'triggerElement' => array('name' => "event_id", 'type' => "select")),
-      array('entity' => 'ParticipantEventName', 'subEntity' => '- Any -',
-        'triggerElement' => array('name' => "event_id", 'type' => "select")),
-      array('entity' => 'ParticipantEventName', 'subEntity' => 'Rain-forest Cup Youth Soccer Tournament',
-        'triggerElement' => array('name' => "event_id", 'type' => "select")),
-      array('entity' => 'ParticipantRole', 'subEntity' => '- Any -','triggerElement' => array('type' => "checkbox")),
-      array('entity' => 'ParticipantRole', 'subEntity' => 'Volunteer','triggerElement' => array('type' => "checkbox"))
-    );
+                        array('entity' => 'ParticipantEventType', 'subEntity' => '- Any -',
+                              'triggerElement' => array('name' => "event_id", 'type' => "select")),
+                        array('entity' => 'ParticipantEventName', 'subEntity' => '- Any -',
+                              'triggerElement' => array('name' => "event_id", 'type' => "select")),
+                        array('entity' => 'ParticipantEventName', 'subEntity' => 'Rain-forest Cup Youth Soccer Tournament',
+                              'triggerElement' => array('name' => "event_id", 'type' => "select")),
+                        array('entity' => 'ParticipantRole', 'subEntity' => '- Any -','triggerElement' => array('type' => "checkbox")),
+                        array('entity' => 'ParticipantRole', 'subEntity' => 'Volunteer','triggerElement' => array('type' => "checkbox"))
+                        );
 
     $return = $this->addCustomGroupField($customSets);
 

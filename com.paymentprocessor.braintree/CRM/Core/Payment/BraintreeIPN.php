@@ -7,7 +7,7 @@ require_once 'CRM/Core/Payment/BaseIPN.php';
 
 class CRM_Core_Payment_BraintreeIPN extends CRM_Core_Payment_BaseIPN {
 
-   function __construct() {
+  function __construct() {
     parent::__construct();
 
   }
@@ -30,8 +30,8 @@ class CRM_Core_Payment_BraintreeIPN extends CRM_Core_Payment_BaseIPN {
       $this->getIDs($ids, $input);
 
       $paymentProcessorID = CRM_Core_DAO::getFieldValue('CRM_Financial_DAO_PaymentProcessorType',
-        'Braintree', 'id', 'name'
-      );
+                                                        'Braintree', 'id', 'name'
+                                                        );
 
       if (!$this->validateData($input, $ids, $objects, TRUE, $paymentProcessorID)) {
         return FALSE;
@@ -142,18 +142,18 @@ class CRM_Core_Payment_BraintreeIPN extends CRM_Core_Payment_BaseIPN {
     if ($sendNotification) {
       $autoRenewMembership = FALSE;
       if ($recur->id &&
-        isset($ids['membership']) && $ids['membership']
-      ) {
+          isset($ids['membership']) && $ids['membership']
+          ) {
         $autoRenewMembership = TRUE;
       }
 
       //send recurring Notification email for user
       CRM_Contribute_BAO_ContributionPage::recurringNotify($subscriptionPaymentStatus,
-        $ids['contact_id'],
-        $ids['contributionPage'],
-        $recur,
-        $autoRenewMembership
-      );
+                                                           $ids['contact_id'],
+                                                           $ids['contributionPage'],
+                                                           $recur,
+                                                           $autoRenewMembership
+                                                           );
     }
   }
 
@@ -196,24 +196,24 @@ INNER JOIN civicrm_contribution co ON co.contribution_recur_id = cr.id
     $ids['contribution'] =  $contRecur->contribution_id;
     $ids['contributionPage'] =  $contRecur->contribution_page_id; 
     
-          // Get membershipId. Join with membership payment table for additional checks
-      $sql = "
+    // Get membershipId. Join with membership payment table for additional checks
+    $sql = "
     SELECT m.id
       FROM civicrm_membership m
 INNER JOIN civicrm_membership_payment mp ON m.id = mp.membership_id AND mp.contribution_id = {$ids['contribution']}
      WHERE m.contribution_recur_id = {$ids['contributionRecur']}
      LIMIT 1";
-      if ($membershipId = CRM_Core_DAO::singleValueQuery($sql)) {
-        $ids['membership'] = $membershipId;
-      }
+    if ($membershipId = CRM_Core_DAO::singleValueQuery($sql)) {
+      $ids['membership'] = $membershipId;
+    }
 
   }
 
   static function retrieve($name, $type, $abort = TRUE, $default = NULL, $location = 'POST') {
     static $store = NULL;
     $value = CRM_Utils_Request::retrieve($name, $type, $store,
-      FALSE, $default, $location
-    );
+                                         FALSE, $default, $location
+                                         );
     if ($abort && $value === NULL) {
       CRM_Core_Error::debug_log_message("Could not find an entry for $name in $location");
       CRM_Core_Error::debug_var('POST', $_POST);
@@ -226,8 +226,8 @@ INNER JOIN civicrm_membership_payment mp ON m.id = mp.membership_id AND mp.contr
 
   function checkMD5($ids, $input) {
     $paymentProcessor = CRM_Financial_BAO_PaymentProcessor::getPayment($ids['paymentProcessor'],
-      $input['is_test'] ? 'test' : 'live'
-    );
+                                                                       $input['is_test'] ? 'test' : 'live'
+                                                                       );
     $paymentObject = CRM_Core_Payment::singleton($input['is_test'] ? 'test' : 'live', $paymentProcessor);
 
     if (!$paymentObject->checkMD5($input['MD5_Hash'], $input['trxn_id'], $input['amount'], TRUE)) {
@@ -240,53 +240,53 @@ INNER JOIN civicrm_membership_payment mp ON m.id = mp.membership_id AND mp.contr
   
   static function destinationVerfication()
   {
-     self::setBraintreeAuthValues();
-     echo  Braintree_WebhookNotification::verify($_GET['bt_challenge']);
+    self::setBraintreeAuthValues();
+    echo  Braintree_WebhookNotification::verify($_GET['bt_challenge']);
   }
   
   static function processNotification()
   {
-      self::setBraintreeAuthValues();
-      $webhookNotification = Braintree_WebhookNotification::parse(
-            $_POST['bt_signature_param'], $_POST['bt_payload_param']
-          );
+    self::setBraintreeAuthValues();
+    $webhookNotification = Braintree_WebhookNotification::parse(
+                                                                $_POST['bt_signature_param'], $_POST['bt_payload_param']
+                                                                );
       
-      $this->main($webhookNotification->_attributes);
+    $this->main($webhookNotification->_attributes);
   }
   
   static function testNotification($subscriptionId)
   {
-      self::setBraintreeAuthValues();
-      $sampleNotification = Braintree_WebhookTesting::sampleNotification(
-        Braintree_WebhookNotification::SUBSCRIPTION_CHARGED_SUCCESSFULLY,
-        $subscriptionId
-     );
+    self::setBraintreeAuthValues();
+    $sampleNotification = Braintree_WebhookTesting::sampleNotification(
+                                                                       Braintree_WebhookNotification::SUBSCRIPTION_CHARGED_SUCCESSFULLY,
+                                                                       $subscriptionId
+                                                                       );
       
-      $webhookNotification = Braintree_WebhookNotification::parse(
-        $sampleNotification['signature'],
-        $sampleNotification['payload']
-       );
-       return $webhookNotification->_attributes;
+    $webhookNotification = Braintree_WebhookNotification::parse(
+                                                                $sampleNotification['signature'],
+                                                                $sampleNotification['payload']
+                                                                );
+    return $webhookNotification->_attributes;
   }
   
   static function setBraintreeAuthValues()
   {
     $paymentProcessorTypeID = CRM_Core_DAO::getFieldValue(
-      'CRM_Financial_DAO_PaymentProcessorType',
-      'braintree',
-      'id',
-      'name'
-    );
-     $paymentProcessorID = CRM_Core_DAO::getFieldValue(
-      'CRM_Financial_DAO_PaymentProcessor',
-      $paymentProcessorTypeID,
-      'id',
-      'payment_processor_type_id'
-    );
-     $paymentProcessor = CRM_Financial_BAO_PaymentProcessor::getPayment($paymentProcessorID, "test");
-     Braintree_Configuration::environment("sandbox");
-     Braintree_Configuration::merchantId($paymentProcessor["user_name"]);
-     Braintree_Configuration::publicKey($paymentProcessor["password"]);
-     Braintree_Configuration::privateKey($paymentProcessor["signature"]); 
+                                                          'CRM_Financial_DAO_PaymentProcessorType',
+                                                          'braintree',
+                                                          'id',
+                                                          'name'
+                                                          );
+    $paymentProcessorID = CRM_Core_DAO::getFieldValue(
+                                                      'CRM_Financial_DAO_PaymentProcessor',
+                                                      $paymentProcessorTypeID,
+                                                      'id',
+                                                      'payment_processor_type_id'
+                                                      );
+    $paymentProcessor = CRM_Financial_BAO_PaymentProcessor::getPayment($paymentProcessorID, "test");
+    Braintree_Configuration::environment("sandbox");
+    Braintree_Configuration::merchantId($paymentProcessor["user_name"]);
+    Braintree_Configuration::publicKey($paymentProcessor["password"]);
+    Braintree_Configuration::privateKey($paymentProcessor["signature"]); 
   }
 }

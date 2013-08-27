@@ -1,6 +1,6 @@
 <?php
 /*
-    Offline Auto Renew membership test for Braintree Payment Processor
+  Offline Auto Renew membership test for Braintree Payment Processor
 */
 
 require_once 'CiviTest/CiviSeleniumTestCase.php';
@@ -16,13 +16,13 @@ class WebTest_Member_OfflineAutoRenewBraintreeMembershipTest extends CiviSeleniu
     $processorName = "Webtest Braintree" . substr(sha1(rand()), 0, 7);
     $processorType = 'Braintree';
     $processorSettings = array(
-        'test_user_name' => 'qvtn6yk594nbxsyw',
-        'test_password' => 'g55wdxm36pb8yy5m',
-        'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
-        'user_name' => 'qvtn6yk594nbxsyw',
-        'password' => 'g55wdxm36pb8yy5m',
-        'signature' => 'b92f264fd7b17d0f01893ff52777135c',
-    );
+                               'test_user_name' => 'qvtn6yk594nbxsyw',
+                               'test_password' => 'g55wdxm36pb8yy5m',
+                               'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               'user_name' => 'qvtn6yk594nbxsyw',
+                               'password' => 'g55wdxm36pb8yy5m',
+                               'signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               );
 
     $this->webtestAddPaymentProcessor($processorName,$processorType,$processorSettings);
 
@@ -94,16 +94,16 @@ class WebTest_Member_OfflineAutoRenewBraintreeMembershipTest extends CiviSeleniu
 
     // View Membership Record
     $verifyData = array(
-      'Member' => "$firstName $lastName",
-      'Membership Type' => $memTypeParams['membership_type'],
-      'Source' => 'Online Membership: Admin Interface',
-      'Status' => 'Pending',
-      'Auto-renew' => 'Yes',
-    );
+                        'Member' => "$firstName $lastName",
+                        'Membership Type' => $memTypeParams['membership_type'],
+                        'Source' => 'Online Membership: Admin Interface',
+                        'Status' => 'Pending',
+                        'Auto-renew' => 'Yes',
+                        );
     foreach ($verifyData as $label => $value) {
       $this->verifyText("xpath=//form[@id='MembershipView']//table/tbody/tr/td[text()='{$label}']/following-sibling::td",
-        preg_quote($value)
-      );
+                        preg_quote($value)
+                        );
     }
     $this->waitForElementPresent("_qf_MembershipView_cancel-bottom");
   }

@@ -1,7 +1,7 @@
 <?php
 
 /*
-     Offline contribution test for Braintree Payment Processor
+  Offline contribution test for Braintree Payment Processor
 */
 
 require_once 'CiviTest/CiviSeleniumTestCase.php';
@@ -20,13 +20,13 @@ class WebTest_Contribute_OfflineContributionBraintreeTest extends CiviSeleniumTe
     $processorName = "Webtest Braintree" . substr(sha1(rand()), 0, 7);
     $processorType = 'Braintree';
     $processorSettings = array(
-        'test_user_name' => 'qvtn6yk594nbxsyw',
-        'test_password' => 'g55wdxm36pb8yy5m',
-        'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
-        'user_name' => 'qvtn6yk594nbxsyw',
-        'password' => 'g55wdxm36pb8yy5m',
-        'signature' => 'b92f264fd7b17d0f01893ff52777135c',
-    );
+                               'test_user_name' => 'qvtn6yk594nbxsyw',
+                               'test_password' => 'g55wdxm36pb8yy5m',
+                               'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               'user_name' => 'qvtn6yk594nbxsyw',
+                               'password' => 'g55wdxm36pb8yy5m',
+                               'signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               );
     $this->webtestAddPaymentProcessor($processorName,$processorType,$processorSettings);
  
 
@@ -40,67 +40,67 @@ class WebTest_Contribute_OfflineContributionBraintreeTest extends CiviSeleniumTe
 
     //scenario 1 : is_deductible = 0 and non deductible amount is entered
     $scenario1 = array(
-      'financial_type' => 'Campaign Contribution',
-      'total_amount' => 111,
-      'non_deductible_amount' => 15
-    );
+                       'financial_type' => 'Campaign Contribution',
+                       'total_amount' => 111,
+                       'non_deductible_amount' => 15
+                       );
     $this->_doOfflineContribution($scenario1, $firstName, $lastName, $processorName);
 
     $checkScenario1 = array(
-      'From' => "{$firstName} {$lastName}",
-      'Financial Type' => 'Campaign Contribution',
-      'Total Amount' => 111,
-      'Non-deductible Amount' => 15
-    );
+                            'From' => "{$firstName} {$lastName}",
+                            'Financial Type' => 'Campaign Contribution',
+                            'Total Amount' => 111,
+                            'Non-deductible Amount' => 15
+                            );
     $this->_verifyAmounts($checkScenario1);
 
     //scenario 2 : is_deductible = TRUE and premium is set and premium is greater than total amount
     $scenario2 = array(
-      'financial_type' => 'Donation',
-      'total_amount' => 10,
-      'premium' => "{$premiumName} ( SKU )"
-    );
+                       'financial_type' => 'Donation',
+                       'total_amount' => 10,
+                       'premium' => "{$premiumName} ( SKU )"
+                       );
     $this->_doOfflineContribution($scenario2, $firstName, $lastName, $processorName);
 
     $checkScenario2 = array(
-      'From' => "{$firstName} {$lastName}",
-      'Financial Type' => 'Donation',
-      'Total Amount' => 10,
-      'Non-deductible Amount' => 10
-    );
+                            'From' => "{$firstName} {$lastName}",
+                            'Financial Type' => 'Donation',
+                            'Total Amount' => 10,
+                            'Non-deductible Amount' => 10
+                            );
     $this->_verifyAmounts($checkScenario2);
 
     //scenario 3 : is_deductible = TRUE and premium is set and premium is less than total amount
     $scenario3 = array(
-      'financial_type' => 'Donation',
-      'total_amount' => 123,
-      'premium' => "{$premiumName} ( SKU )"
-    );
+                       'financial_type' => 'Donation',
+                       'total_amount' => 123,
+                       'premium' => "{$premiumName} ( SKU )"
+                       );
     $this->_doOfflineContribution($scenario3, $firstName, $lastName, $processorName);
 
     $checkScenario3 = array(
-      'From' => "{$firstName} {$lastName}",
-      'Financial Type' => 'Donation',
-      'Total Amount' => 123,
-      'Non-deductible Amount' => 12
-    );
+                            'From' => "{$firstName} {$lastName}",
+                            'Financial Type' => 'Donation',
+                            'Total Amount' => 123,
+                            'Non-deductible Amount' => 12
+                            );
     $this->_verifyAmounts($checkScenario3);
 
 
 
     //scenario 5 : is_deductible = FALSE, non_deductible_amount = the total amount
     $scenario5 = array(
-      'financial_type' => 'Campaign Contribution',
-      'total_amount' => 555,
-    );
+                       'financial_type' => 'Campaign Contribution',
+                       'total_amount' => 555,
+                       );
     $this->_doOfflineContribution($scenario5, $firstName, $lastName, $processorName);
 
     $checkScenario5 = array(
-      'From' => "{$firstName} {$lastName}",
-      'Financial Type' => 'Campaign Contribution',
-      'Total Amount' => 555,
-      'Non-deductible Amount' => 555
-    );
+                            'From' => "{$firstName} {$lastName}",
+                            'Financial Type' => 'Campaign Contribution',
+                            'Total Amount' => 555,
+                            'Non-deductible Amount' => 555
+                            );
     $this->_verifyAmounts($checkScenario5);
   }
 
@@ -164,8 +164,8 @@ class WebTest_Contribute_OfflineContributionBraintreeTest extends CiviSeleniumTe
 
     foreach ($verifyData as $label => $value) {
       $this->verifyText("xpath=//form[@id='ContributionView']//table/tbody/tr/td[text()='{$label}']/following-sibling::td",
-        preg_quote($value)
-      );
+                        preg_quote($value)
+                        );
     }
 
     $this->click("_qf_ContributionView_cancel-top");

@@ -3,7 +3,7 @@ For CiviCRM 4.3 and 4.2:
 
 Install extension
  
-You can get Braintree Payment Processor Extension from here : https://github.com/vivekarora/braintree
+You can get Braintree Payment Processor Extension from here : https://github.com/vivekarora/braintree-recur
 
 
 Tasks need to be done after installing the extension.
@@ -12,6 +12,17 @@ Tasks need to be done after installing the extension.
 2. Go to System Settings -> Payment Processors
 3. Select Braintree from Payment processor type dropdown
 4. Fill the Merchant Id,Public Key and Private Key which will you get when you login to https://sandbox.braintreegateway.com
+
+Tasks needs to be done for setting up recurring payments
+
+1. Login on https://sandbox.braintreegateway.com
+2. Go to Settings->Webhooks
+3. Define accesspath for braintreeNotify.php in Destination text box
+4. Uncomment line 16 and 17 of braintreeNotify.php for desitnation verification  
+             CRM_Core_Payment_BraintreeIPN::destinationVerfication();
+             die;
+5. Comment line 16 and 17 again after successfull destination verification. 
+6. Go to plans and create new plan with civi_plan, don't worry about the plan details it be overwritten by ours.
 
 Tasks needs to be done to run the test cases.
 
@@ -53,3 +64,10 @@ Offline Contribution tests
  
           scripts/phpunit -uUSERNAME -pPASSWORD -hHOST -bTESTDBNAME WebTest_Member_OfflineAutoRenewBraintreeMembershipTest
  
+Online Contribution Recur tests
+
+       scripts/phpunit -uUSERNAME -pPASSWORD -hHOST -bTESTDBNAME WebTest_Contribute_OnlineRecurContributionBraintreeTest
+
+Offline Contribution Recur tests
+
+        scripts/phpunit -uUSERNAME -pPASSWORD -hHOST -bTESTDBNAME  WebTest_Contribute_OfflineRecurContributionBraintreeTest

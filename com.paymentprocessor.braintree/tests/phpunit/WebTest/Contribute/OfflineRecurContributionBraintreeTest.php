@@ -1,27 +1,27 @@
 <?php
 /*
- +--------------------------------------------------------------------+
- | CiviCRM version 4.3                                                |
- +--------------------------------------------------------------------+
- | Copyright CiviCRM LLC (c) 2004-2013                                |
- +--------------------------------------------------------------------+
- | This file is a part of CiviCRM.                                    |
- |                                                                    |
- | CiviCRM is free software; you can copy, modify, and distribute it  |
- | under the terms of the GNU Affero General Public License           |
- | Version 3, 19 November 2007 and the CiviCRM Licensing Exception.   |
- |                                                                    |
- | CiviCRM is distributed in the hope that it will be useful, but     |
- | WITHOUT ANY WARRANTY; without even the implied warranty of         |
- | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.               |
- | See the GNU Affero General Public License for more details.        |
- |                                                                    |
- | You should have received a copy of the GNU Affero General Public   |
- | License along with this program; if not, contact CiviCRM LLC       |
- | at info[AT]civicrm[DOT]org. If you have questions about the        |
- | GNU Affero General Public License or the licensing of CiviCRM,     |
- | see the CiviCRM license FAQ at http://civicrm.org/licensing        |
- +--------------------------------------------------------------------+
+  +--------------------------------------------------------------------+
+  | CiviCRM version 4.3                                                |
+  +--------------------------------------------------------------------+
+  | Copyright CiviCRM LLC (c) 2004-2013                                |
+  +--------------------------------------------------------------------+
+  | This file is a part of CiviCRM.                                    |
+  |                                                                    |
+  | CiviCRM is free software; you can copy, modify, and distribute it  |
+  | under the terms of the GNU Affero General Public License           |
+  | Version 3, 19 November 2007 and the CiviCRM Licensing Exception.   |
+  |                                                                    |
+  | CiviCRM is distributed in the hope that it will be useful, but     |
+  | WITHOUT ANY WARRANTY; without even the implied warranty of         |
+  | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.               |
+  | See the GNU Affero General Public License for more details.        |
+  |                                                                    |
+  | You should have received a copy of the GNU Affero General Public   |
+  | License along with this program; if not, contact CiviCRM LLC       |
+  | at info[AT]civicrm[DOT]org. If you have questions about the        |
+  | GNU Affero General Public License or the licensing of CiviCRM,     |
+  | see the CiviCRM license FAQ at http://civicrm.org/licensing        |
+  +--------------------------------------------------------------------+
 */
 
 require_once 'CiviTest/CiviSeleniumTestCase.php';
@@ -38,13 +38,13 @@ class WebTest_Contribute_OfflineRecurContributionBraintreeTest extends CiviSelen
     $processorName = "Webtest Braintree" . substr(sha1(rand()), 0, 7);
     $processorType = 'Braintree';
     $processorSettings = array(
-        'test_user_name' => 'qvtn6yk594nbxsyw',
-        'test_password' => 'g55wdxm36pb8yy5m',
-        'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
-        'user_name' => 'qvtn6yk594nbxsyw',
-        'password' => 'g55wdxm36pb8yy5m',
-        'signature' => 'b92f264fd7b17d0f01893ff52777135c',
-    );
+                               'test_user_name' => 'qvtn6yk594nbxsyw',
+                               'test_password' => 'g55wdxm36pb8yy5m',
+                               'test_signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               'user_name' => 'qvtn6yk594nbxsyw',
+                               'password' => 'g55wdxm36pb8yy5m',
+                               'signature' => 'b92f264fd7b17d0f01893ff52777135c',
+                               );
     $this->webtestAddPaymentProcessor($processorName,$processorType,$processorSettings);
 
     // create a new contact for whom recurring contribution is to be created
@@ -70,8 +70,8 @@ class WebTest_Contribute_OfflineRecurContributionBraintreeTest extends CiviSelen
     $this->waitForElementPresent('payment_processor_id');
     $this->select('payment_processor_id', "label={$processorName}");
 
-      $this->click('financial_type_id');
-      $this->select('financial_type_id', 'label=Donation');
+    $this->click('financial_type_id');
+    $this->select('financial_type_id', 'label=Donation');
     $this->type('total_amount', '10');
 
     // recurring contribution fields
@@ -81,7 +81,7 @@ class WebTest_Contribute_OfflineRecurContributionBraintreeTest extends CiviSelen
     $this->type('installments', '12');
 
     $this->click('is_email_receipt');
-      $this->waitForElementPresent('credit_card_type');
+    $this->waitForElementPresent('credit_card_type');
 
     // enter credit card info on form
     $this->webtestAddCreditCardDetails();
@@ -105,17 +105,17 @@ class WebTest_Contribute_OfflineRecurContributionBraintreeTest extends CiviSelen
 
     // View Recurring Contribution Record
     $verifyData = array(
-      'From' => "$contactName",
-                          'Financial Type'    => 'Donation (test)',
-      'Total Amount' => 'Installments: 12, Interval: 1 month(s)',
-      'Contribution Status' => 'Pending : Incomplete Transaction',
-      'Paid By' => 'Credit Card',
-    );
+                        'From' => "$contactName",
+                        'Financial Type'    => 'Donation (test)',
+                        'Total Amount' => 'Installments: 12, Interval: 1 month(s)',
+                        'Contribution Status' => 'Pending : Incomplete Transaction',
+                        'Paid By' => 'Credit Card',
+                        );
 
     foreach ($verifyData as $label => $value) {
       $this->verifyText("xpath=//form[@id='ContributionView']//table/tbody/tr/td[text()='{$label}']/following-sibling::td",
-        preg_quote($value)
-      );
+                        preg_quote($value)
+                        );
     }
   }
 }

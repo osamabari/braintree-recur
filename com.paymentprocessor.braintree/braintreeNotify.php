@@ -13,8 +13,8 @@ $config = CRM_Core_Config::singleton();
 
 // for the destination verfication uncomment below code
 /*
-CRM_Core_Payment_BraintreeIPN::destinationVerfication();
-die;
+  CRM_Core_Payment_BraintreeIPN::destinationVerfication();
+  die;
 */
 
 //$rawPostData = file_get_contents('php://input');
@@ -24,8 +24,8 @@ $ipn = new CRM_Core_Payment_BraintreeIPN();
  *    To test successfull subscrition charged uncomment benlow code.
  *    And change the $subscriptionId value 
  
-$subscriptionId = 'bg9tb2';
-$notificationArray = CRM_Core_Payment_BraintreeIPN::testNotification($subscriptionId);
+ $subscriptionId = 'bg9tb2';
+ $notificationArray = CRM_Core_Payment_BraintreeIPN::testNotification($subscriptionId);
  * 
  */
 $notificationArray = CRM_Core_Payment_BraintreeIPN::processNotification($subscriptionId);
