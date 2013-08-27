@@ -3,7 +3,7 @@ For CiviCRM 4.3 and 4.2:
 
 Install extension
  
-You can get Braintree Payment Processor Extension from here : https://github.com/vivekarora/braintree-recur
+You can get Braintree Payment Processor Extension from here : https://github.com/vivekarora/braintree-recur/archive/master.zip
 
 
 Tasks need to be done after installing the extension.
